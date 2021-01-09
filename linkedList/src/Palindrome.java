@@ -110,10 +110,10 @@ public class Palindrome {
 //        palindrome.list();
 //        System.out.println();
 //        System.out.println(palindrome.isPalindrome());
-//        palindrome.addNode('b');
-//        palindrome.list();
-//        System.out.println();
-        System.out.println(palindrome.isPalindrome());
+        palindrome.addNode('b');
+        palindrome.list();
+        System.out.println();
+      System.out.println(palindrome.isPalindrome());
 
     }
 
