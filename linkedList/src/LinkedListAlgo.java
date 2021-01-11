@@ -1,5 +1,6 @@
 import javax.print.attribute.standard.NumberOfDocuments;
 import javax.sql.DataSource;
+import java.awt.geom.AffineTransform;
 
 /**
  * 单链表反转
@@ -140,25 +141,47 @@ public class LinkedListAlgo {
         }
         return head;
     }
+
+    /**
+     * 删除单链表到数第k个节点
+     * 双指针法，定义两个指针fast、slow
+     * 让fast指针先向后走k个位置，然后两个指针同时向后，最后当fast到达链表的结尾的时候，slow.next就是要删除的节点
+     * 需要注意删除头节点的情况
+     */
+    public Node deleteLastKth(int k){
+        if(head==null)
+            return null;
+        Node fast=head;
+        Node slow=head;
+        for (int i = 0; i < k; i++) {
+            fast=fast.next;
+        }
+        //删除头节点
+        if(fast==null){
+            Node p=head;
+            head=head.next;
+            return p;
+        }
+        //其他节点
+        while (fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        Node p=slow.next;
+        slow.next=slow.next.next;
+        return p;
+
+    }
+
+
+
     public static void main(String[] args) {
-        LinkedListAlgo list1 = new LinkedListAlgo();
-        LinkedListAlgo list2 = new LinkedListAlgo();
-
         LinkedListAlgo listAlgo = new LinkedListAlgo();
-        listAlgo.mergeLinkedList(list1,list2);
-        listAlgo.list();
-
-        list1.add(1);
-        list1.add(2);
-        list1.add(3);
-        listAlgo.mergeLinkedList(list1,list2);
-        listAlgo.list();
-        System.out.println();
-
-        list2.add(1);
-        list2.add(3);
-        list2.add(4);
-        listAlgo.mergeLinkedList(list1,list2);
+        listAlgo.add(1);
+//        listAlgo.add(2);
+//        listAlgo.add(3);
+        Node node = listAlgo.deleteLastKth(1);
+        System.out.println(node.data);
         listAlgo.list();
 
     }
