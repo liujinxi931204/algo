@@ -1,3 +1,5 @@
+import javax.print.attribute.standard.NumberOfDocuments;
+
 /**
  * 单链表反转
  * 表中环的检测
@@ -166,6 +168,31 @@ public class LinkedListAlgo {
         Node p=slow.next;
         slow.next=slow.next.next;
         return p;
+
+    }
+
+    /**
+     *
+     * 检测单链表中是否有环的存在
+     * 快慢两个指针，快指针每一次向后走两个位置，慢指针每次向后走一个位置，如果快、慢指针相遇，则说明有环
+     */
+    public boolean hasLoop(){
+        //如果是空链表，则没有环
+        if(head==null){
+            return false;
+        }
+        Node fast=head;
+        Node slow=head;
+
+        while (fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+            if (fast==slow){
+                //如果相遇，说明有环
+                return true;
+            }
+        }
+        return  false;
 
     }
 
