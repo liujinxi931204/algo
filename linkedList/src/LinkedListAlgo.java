@@ -79,6 +79,23 @@ public class LinkedListAlgo {
         return head;
     }
 
+    /**
+     * 求链表的中间结点
+     * 快慢指针法，需要注意遍历结束的条件
+     */
+    public Node findMiddle(){
+        if(head==null){
+            return null;
+        }
+        Node fast=head;
+        Node slow=head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow;
+    }
+
 
     public static void main(String[] args) {
         LinkedListAlgo linkedListAlgo = new LinkedListAlgo();
@@ -103,6 +120,11 @@ public class LinkedListAlgo {
         linkedListAlgo.list();
         System.out.println();
 
+        Node middle = linkedListAlgo.findMiddle();
+        System.out.println(middle.getData());
+        linkedListAlgo.add(4);
+        Node middle1 = linkedListAlgo.findMiddle();
+        System.out.println(middle1.getData());
 
     }
 }
