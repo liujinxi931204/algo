@@ -13,7 +13,8 @@ import java.util.LinkedList;
  **/
 public class LinkedListAlgo {
     //定义头节点
-    private static Node head;
+    private Node head;
+
 
     //定义链表节点
     static class Node{
@@ -36,7 +37,7 @@ public class LinkedListAlgo {
     /**
      * 链表的遍历
      */
-    public static void list(){
+    public void list(){
         Node p=head;
         while (p!=null){
             System.out.print(p.data);
@@ -46,7 +47,7 @@ public class LinkedListAlgo {
     /**
      * 在尾部添加节点
      */
-    public static void add(int data){
+    public void add(int data){
         Node newNode=new Node(data,null);
         if(head==null){
             head=newNode;
@@ -63,7 +64,7 @@ public class LinkedListAlgo {
     /**
      * 单链表反转
      */
-    public static Node reverse(){
+    public Node reverse(){
         Node p=head;
         Node prev;
         Node next=null;
@@ -80,15 +81,28 @@ public class LinkedListAlgo {
 
 
     public static void main(String[] args) {
-        LinkedListAlgo.list();
-        LinkedListAlgo.reverse();
-        LinkedListAlgo.list();
-        LinkedListAlgo.add(1);
-        LinkedListAlgo.add(2);
-        LinkedListAlgo.add(3);
-        LinkedListAlgo.list();
+        LinkedListAlgo linkedListAlgo = new LinkedListAlgo();
+        linkedListAlgo.list();
         System.out.println();
-        LinkedListAlgo.reverse();
-        LinkedListAlgo.list();
+        linkedListAlgo.reverse();
+        linkedListAlgo.list();
+        System.out.println();
+
+        linkedListAlgo.add(1);
+        linkedListAlgo.list();
+        System.out.println();
+        linkedListAlgo.reverse();
+        linkedListAlgo.list();
+        System.out.println();
+
+        linkedListAlgo.add(2);
+        linkedListAlgo.add(3);
+        linkedListAlgo.list();
+        System.out.println();
+        linkedListAlgo.reverse();
+        linkedListAlgo.list();
+        System.out.println();
+
+
     }
 }
