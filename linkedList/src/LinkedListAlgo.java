@@ -1,8 +1,5 @@
 import javax.print.attribute.standard.NumberOfDocuments;
-import javax.swing.table.JTableHeader;
-import java.awt.event.WindowListener;
-import java.net.http.HttpRequest;
-import java.util.LinkedList;
+import javax.sql.DataSource;
 
 /**
  * 单链表反转
@@ -14,8 +11,6 @@ import java.util.LinkedList;
 public class LinkedListAlgo {
     //定义头节点
     private Node head;
-
-
     //定义链表节点
     static class Node{
         //定义链表的数据节点
@@ -44,6 +39,7 @@ public class LinkedListAlgo {
             p=p.next;
         }
     }
+
     /**
      * 在尾部添加节点
      */
@@ -96,35 +92,74 @@ public class LinkedListAlgo {
         return slow;
     }
 
+    /**
+     * 合并两个有序链表
+     *
+     */
+    public Node mergeLinkedList(LinkedListAlgo list1,LinkedListAlgo list2){
+        //两种特殊情况，两个链表都是空链表或者有一个链表是空链表
+        if(list1.head==null && list2.head==null){
+            return null;
+        }
+        if(list1.head==null){
+            head=list2.head;
+            return head;
+        }
+        if(list2.head==null){
+            head=list1.head;
+            return head;
+        }
+        //一般情况，两个链表都不为空
+        Node p=list1.head;
+        Node q=list2.head;
 
+        if(p.data<=q.data){
+            head=p;
+            p=p.next;
+        }else{
+            head=q;
+            q=q.next;
+        }
+        Node r=head;
+
+        while (p!=null && q!=null){
+            if(p.data<=q.data){
+                r.next=p;
+                p=p.next;
+            }else{
+                r.next=q;
+                q=q.next;
+            }
+            r=r.next;
+        }
+        if(p==null){
+            r.next=q;
+        }
+        if(q==null){
+            r.next=p;
+        }
+        return head;
+    }
     public static void main(String[] args) {
-        LinkedListAlgo linkedListAlgo = new LinkedListAlgo();
-        linkedListAlgo.list();
-        System.out.println();
-        linkedListAlgo.reverse();
-        linkedListAlgo.list();
+        LinkedListAlgo list1 = new LinkedListAlgo();
+        LinkedListAlgo list2 = new LinkedListAlgo();
+
+        LinkedListAlgo listAlgo = new LinkedListAlgo();
+        listAlgo.mergeLinkedList(list1,list2);
+        listAlgo.list();
+
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+        listAlgo.mergeLinkedList(list1,list2);
+        listAlgo.list();
         System.out.println();
 
-        linkedListAlgo.add(1);
-        linkedListAlgo.list();
-        System.out.println();
-        linkedListAlgo.reverse();
-        linkedListAlgo.list();
-        System.out.println();
-
-        linkedListAlgo.add(2);
-        linkedListAlgo.add(3);
-        linkedListAlgo.list();
-        System.out.println();
-        linkedListAlgo.reverse();
-        linkedListAlgo.list();
-        System.out.println();
-
-        Node middle = linkedListAlgo.findMiddle();
-        System.out.println(middle.getData());
-        linkedListAlgo.add(4);
-        Node middle1 = linkedListAlgo.findMiddle();
-        System.out.println(middle1.getData());
+        list2.add(1);
+        list2.add(3);
+        list2.add(4);
+        listAlgo.mergeLinkedList(list1,list2);
+        listAlgo.list();
 
     }
 }
