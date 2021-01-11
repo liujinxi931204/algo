@@ -84,8 +84,8 @@ public class LinkedListAlgo {
         LinkedListAlgo.reverse();
         LinkedListAlgo.list();
         LinkedListAlgo.add(1);
-//        LinkedListAlgo.add(2);
-//        LinkedListAlgo.add(3);
+        LinkedListAlgo.add(2);
+        LinkedListAlgo.add(3);
         LinkedListAlgo.list();
         System.out.println();
         LinkedListAlgo.reverse();
