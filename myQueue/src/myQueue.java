@@ -1,3 +1,8 @@
+import javax.imageio.plugins.tiff.GeoTIFFTagSet;
+import javax.print.DocFlavor;
+import javax.swing.*;
+import javax.swing.undo.AbstractUndoableEdit;
+
 /**
  *
  **/
@@ -158,28 +163,78 @@ public class myQueue {
         }
     }
 
+    /**
+     * 循环队列
+     */
+    static class CircleQueue{
+
+        //使用数组表示队列
+        private String[] queue;
+        //队列的大小
+        private int n;
+        //队列的头
+        private int head;
+        //队列的尾
+        private int tail;
+
+        public CircleQueue(int n) {
+            queue=new String[n];
+            this.n = n;
+        }
+
+        public boolean enqueue(String str){
+            //队列满
+            if((tail+1)%n==head){
+                return false;
+            }
+            queue[tail]=str;
+            tail=(tail+1)%n;
+            return true;
+        }
+
+        public String dequeue(){
+            //队列空
+            if(head==tail){
+                return null;
+            }
+            String str=queue[head];
+            head=(head+1)%n;
+            return str;
+        }
+
+        public void list(){
+            int p=head;
+            while (p!= tail){
+                System.out.print(queue[p]+"   ");
+                p=(p+1)%n;
+            }
+        }
+    }
+
+
+
     public static void main(String[] args) {
-        ArrayQueue arrayQueue = new ArrayQueue(3);
-        arrayQueue.list();
-        System.out.println();
-        arrayQueue.enqueue(1);
-        arrayQueue.enqueue(2);
-        arrayQueue.enqueue(3);
-        arrayQueue.list();
-        System.out.println();
-        int data1 = arrayQueue.dequeue();
-        System.out.println(data1);
-        arrayQueue.list();
-        System.out.println();
-        int data2 = arrayQueue.dequeue();
-        System.out.println(data2);
-        arrayQueue.list();
-        System.out.println();
-        int data3 = arrayQueue.dequeue();
-        System.out.println(data3);
-        arrayQueue.list();
-        System.out.println();
-        arrayQueue.list();
+//        ArrayQueue arrayQueue = new ArrayQueue(3);
+//        arrayQueue.list();
+//        System.out.println();
+//        arrayQueue.enqueue(1);
+//        arrayQueue.enqueue(2);
+//        arrayQueue.enqueue(3);
+//        arrayQueue.list();
+//        System.out.println();
+//        int data1 = arrayQueue.dequeue();
+//        System.out.println(data1);
+//        arrayQueue.list();
+//        System.out.println();
+//        int data2 = arrayQueue.dequeue();
+//        System.out.println(data2);
+//        arrayQueue.list();
+//        System.out.println();
+//        int data3 = arrayQueue.dequeue();
+//        System.out.println(data3);
+//        arrayQueue.list();
+//        System.out.println();
+//        arrayQueue.list();
 
 
 //        LinkedQueue linkedQueue = new LinkedQueue();
@@ -202,6 +257,28 @@ public class myQueue {
 //        System.out.println(data3);
 //        linkedQueue.list();
 //        System.out.println();
+
+
+        CircleQueue circleQueue = new CircleQueue(4);
+        circleQueue.list();
+        System.out.println();
+        circleQueue.enqueue("1");
+        circleQueue.enqueue("2");
+        circleQueue.enqueue("3");
+        circleQueue.list();
+        System.out.println();
+        String str1 = circleQueue.dequeue();
+        System.out.println(str1);
+        circleQueue.list();
+        System.out.println();
+        String str2 = circleQueue.dequeue();
+        System.out.println(str2);
+        circleQueue.list();
+        System.out.println();
+        String str3 = circleQueue.dequeue();
+        System.out.println(str3);
+        circleQueue.list();
+        System.out.println();
 
     }
 }
