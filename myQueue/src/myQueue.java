@@ -184,6 +184,7 @@ public class myQueue {
 
         public boolean enqueue(String str){
             //队列满
+            //循环队列判断满，需要浪费一个空间
             if((tail+1)%n==head){
                 return false;
             }
