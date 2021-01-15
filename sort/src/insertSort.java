@@ -1,6 +1,3 @@
-import javax.xml.stream.FactoryConfigurationError;
-import java.util.jar.JarEntry;
-
 /**
  * 插入排序，将一个序列分为有序和无序的两个部分
  * 初始的时候将第一个元素视为有序的，剩下的视为无序的
