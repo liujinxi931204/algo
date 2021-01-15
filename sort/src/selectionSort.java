@@ -6,9 +6,10 @@
 public class selectionSort {
     public int[] selectionSort(int[] numList){
         for (int i = 0; i <numList.length-1 ; i++) {
-            //无序部分的第一个元素的位置
+            //最开始的有序部分是空，也就是无序部分的开始的索引是0
             int minIndex=i;
-            for (int j=i;j <numList.length; j++) {
+            //找到无序部分的最小值
+            for (int j=i+1;j <numList.length; j++) {
                 if(numList[minIndex]>numList[j])
                     minIndex=j;
             }
