@@ -41,9 +41,17 @@ public class bubbleSort {
 
         int[] num2={6,5,4,3,2,1};
         int[] ints1 = bubbleSort.bubbleSort(num2);
-        for (int i : ints1) {
-            System.out.print(i);
+        for (int anInt : ints1) {
+            System.out.print(anInt);
         }
         System.out.println();
+
+        int[] num3={3,2,1,6,5,4};
+        int[] ints2 = bubbleSort.bubbleSort(num2);
+        for (int anInt : ints2) {
+            System.out.print(anInt);
+        }
+        System.out.println();
+
     }
 }
