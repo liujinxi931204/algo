@@ -12,6 +12,7 @@ public class bubbleSort {
             for (int i = 0; i < numList.length; ++i) {
                 //判断是否有元素交换位置
                 boolean flag=false;
+                //内存循环用来比较相邻两个位置元素的大小
                 for (int j = 0; j < numList.length - i - 1; ++j) {
                     if (numList[j] > numList[j + 1]) {
                         int tmp = numList[j];
