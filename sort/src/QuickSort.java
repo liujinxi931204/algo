@@ -27,6 +27,8 @@ public class QuickSort {
     private static int partition(int[] num,int start,int end){
         //设置最后一位是pivot
         int pivot=num[end];
+        //这里其实用i代表的是小于pivot的部分的最后一个位置
+        //思路类似于选择排序
         int i=start;
         for (int j = start; j <end ; j++) {
             if(num[j]<pivot){
