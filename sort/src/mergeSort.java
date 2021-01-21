@@ -1,7 +1,3 @@
-import javax.imageio.metadata.IIOMetadataFormatImpl;
-import javax.sound.midi.MidiDevice;
-import java.util.concurrent.RunnableFuture;
-
 /**
  * 归并排序
  **/
@@ -30,18 +26,30 @@ public class mergeSort {
     }
 
     public static void merge(int[] num,int start,int middle,int end){
-//        int[] tmp =new int[end-start+1];
-//        int i=start;
-//        int j=middle+1;
-//        int k=0;
-//        while (i<=middle && j<=end){
-//            if(num[i]<=num[j]){
-//                tmp[k++]=num[i++];
-//            }else{
-//                tmp[k++]=num[j++];
-//            }
-//        }
-//        //判断哪个数组中还有剩余的数,将剩余的数全部拷贝到tmp中
+        int[] tmp =new int[end-start+1];
+        int i=start;
+        int j=middle+1;
+        int k=0;
+        while (i<=middle && j<=end){
+            if(num[i]<=num[j]){
+                tmp[k++]=num[i++];
+            }else{
+                tmp[k++]=num[j++];
+            }
+        }
+        //判断哪个数组中还有剩余的数,将剩余的数全部拷贝到tmp中
+        int p=i;
+        int q=middle;
+        //说明后面的数组中还有剩余的元素，需要改变p、q指针的位置
+        if(i>middle){
+            p=j;
+            q=end;
+        }
+        while (p<=q){
+            tmp[k++]=num[p++];
+        }
+
+
 //        if(i>middle){
 //            while (j<=end){
 //                tmp[k++]=num[j++];
@@ -51,34 +59,34 @@ public class mergeSort {
 //                tmp[k++]=num[i++];
 //            }
 //        }
+
+        //感觉这里不好想
+        //将tmp中的数拷贝回num中
+        if (end - start + 1 >= 0) System.arraycopy(tmp, 0, num, start, end - start + 1);
+//        int[] leftTmp=new int[middle+2-start];
+//        int[] rightTmp=new int[end-middle+1];
+//        //设置两个哨兵，可以简化向tmp中拷贝数据的代码
+//        leftTmp[middle+1-start]=Integer.MAX_VALUE;
+//        rightTmp[end-middle]=Integer.MAX_VALUE;
 //
-//        //感觉这里不好想
-//        //将tmp中的数拷贝回num中
-//        if (end - start + 1 >= 0) System.arraycopy(tmp, 0, num, start, end - start + 1);
-        int[] leftTmp=new int[middle+2-start];
-        int[] rightTmp=new int[end-middle+1];
-        //设置两个哨兵，可以简化向tmp中拷贝数据的代码
-        leftTmp[middle+1-start]=Integer.MAX_VALUE;
-        rightTmp[end-middle]=Integer.MAX_VALUE;
-
-        for (int i = 0; i <=middle-start; i++) {
-            leftTmp[i]=num[start+i];
-        }
-
-        for (int i = 0; i < end-middle; i++) {
-            rightTmp[i]=num[i+middle+1];
-        }
-
-        int k=start;
-        int i=0;
-        int j=0;
-        while (k<=end){
-            if(leftTmp[i]<=rightTmp[j])
-                num[k++]=leftTmp[i++];
-            else
-                num[k++]=rightTmp[j++];
-        }
-
+//        for (int i = 0; i <=middle-start; i++) {
+//            leftTmp[i]=num[start+i];
+//        }
+//
+//        for (int i = 0; i < end-middle; i++) {
+//            rightTmp[i]=num[i+middle+1];
+//        }
+//
+//        int k=start;
+//        int i=0;
+//        int j=0;
+//        while (k<=end){
+//            if(leftTmp[i]<=rightTmp[j])
+//                num[k++]=leftTmp[i++];
+//            else
+//                num[k++]=rightTmp[j++];
+//        }
+//
 
 
 
