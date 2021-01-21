@@ -1,5 +1,3 @@
-import java.util.concurrent.ForkJoinPool;
-
 /**
  * 查询一个无序数组中第K大的数，
  * 思路就是使用快排中partition函数一样，以数组的最后一个数做pivot
