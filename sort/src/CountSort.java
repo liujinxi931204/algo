@@ -28,9 +28,7 @@ public class CountSort {
             tmp[num[i]]--;
         }
         //将排序好的结果复制到num中
-        for (int i = 0; i <result.length ; i++) {
-            num[i]=result[i];
-        }
+        System.arraycopy(result, 0, num, 0, result.length);
 
     }
 
