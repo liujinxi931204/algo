@@ -14,8 +14,8 @@ public class CountSort {
         //利用max，申请一个max+1的数组
         int[] tmp=new int[max+1];
         //计算每个元素的个数，放入tmp中
-        for (int i = 0; i <num.length ; i++) {
-            tmp[num[i]]++;
+        for (int value : num) {
+            tmp[value]++;
         }
         //一次累加，意味着i位置的元素可以放在排序好的数组中的最后一个位置
         for (int i = 1; i <tmp.length ; i++) {
