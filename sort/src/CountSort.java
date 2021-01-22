@@ -1,5 +1,5 @@
 /**
- * 计数排序
+ * 计数排序，计数排序只能用在数据范围不大的场景中
  **/
 public class CountSort {
 
@@ -23,6 +23,7 @@ public class CountSort {
         }
         //临时数组，临时存储排序好的结果
         int[] result=new int[num.length];
+        //这里保证了计数排序是稳定的排序
         for (int i = num.length-1; i>=0; --i) {
             result[tmp[num[i]]-1]=num[i];
             tmp[num[i]]--;
