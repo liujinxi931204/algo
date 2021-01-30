@@ -10,6 +10,7 @@ public class LRU<K,V> {
     //总容量
     private int capacity;
     private HashMap<K,Node> caches;
+    //设置两个哨兵，这样链表中间的节点就可以统一的处理
     private final Node head=new Node();
     private final Node tail=new Node();
 
