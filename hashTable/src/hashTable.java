@@ -155,4 +155,8 @@ public class hashTable {
         }
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }
