@@ -182,6 +182,43 @@ public class BinaryTree<T> {
         }
     }
 
+    //求二叉树的高度
+    public int high(Node root){
+        //递归思想，树的高度是max(左子树高度，右子树高度)+1
+        //终止条件是node=null,return 0;
+//        if(root==null){
+//            //空树的高度为0
+//            return 0;
+//        }
+//        return Math.max(high(root.left),high(root.right))+1;
+
+        //利用层序遍历，每遍历完一层且队列不为空时，高度+1
+
+        if(root==null){
+            return 0;
+        }
+        Queue<Node> queue=new LinkedList<>();
+        Node node=root;
+        queue.add(root);
+        int high=0;
+        while (!queue.isEmpty()){
+            int currentSize=queue.size();
+            for (int i = 1; i <=currentSize ; i++) {
+                node= queue.remove();
+                if(node.left!=null){
+                    queue.add(node.left);
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                }
+            }
+            ++high;
+
+        }
+        return high;
+
+    }
+
 
     public static void main(String[] args) {
         BinaryTree<String> stringBinaryTree = new BinaryTree<>();
@@ -210,6 +247,8 @@ public class BinaryTree<T> {
         System.out.println("层序遍历");
         stringBinaryTree.levelOrder();
         System.out.println();
+
+        System.out.println(stringBinaryTree.high(stringBinaryTree.root));
 
     }
 
