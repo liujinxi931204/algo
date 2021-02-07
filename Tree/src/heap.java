@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 构造一个大顶堆
  */
@@ -51,14 +53,14 @@ public class heap {
         //从high位置开始自顶向下堆化，满足堆的定义
         int i=low;
         while (true){
-            if(((i<<1)+1)<=n && nums[i]<nums[(i<<1)+1]){
-                i=(i<<1)+1;
+            if(((low<<1)+1)<=n && nums[low]<nums[(low<<1)+1]){
+                i=(low<<1)+1;
             }
-            if(((i<<1)+2)<=n && nums[(i<<1)+1]<nums[(i<<1)+2]){
-                i=(i<<1)+2;
+            if(((low<<1)+2)<=n && nums[(low<<1)+1]<nums[(low<<1)+2]){
+                i=(low<<1)+2;
             }
             if(i==low) break;
-            swap(nums,i,low);
+            swap(nums,low,i);
             low=i;
         }
 
@@ -71,19 +73,75 @@ public class heap {
         System.out.println();
     }
 
+    //将数组堆化
+    //只需要考虑非叶子节点即可，叶子节点不需要考虑
+    //最后一个非叶子节点的位置是(nums.length-1)/2
+    public static void buildHeap(int[] nums){
+        for (int i = (nums.length-2)/2; i >=0 ; --i) {
+            heapifySort(nums,i,nums.length-1);
+        }
+    }
+
+    public static void heapifySort(int[] nums,int low,int n){
+
+        //从high位置开始自顶向下堆化，满足堆的定义
+        int i=low;
+        while (true){
+            if(((low<<1)+1)<=n && nums[low]<nums[(low<<1)+1]){
+                i=(low<<1)+1;
+            }
+            if(((low<<1)+2)<=n && nums[(low<<1)+1]<nums[(low<<1)+2]){
+                i=(low<<1)+2;
+            }
+            if(i==low) break;
+            swapSort(nums,low,i);
+            low=i;
+        }
+    }
+
+    public static void swapSort(int[] nums,int low,int high){
+        int tmp=nums[high];
+        nums[high]=nums[low];
+        nums[low]=tmp;
+    }
+
+    //堆排序，有两步
+    //第一步是建堆，建堆只需要从最后一个非叶子节点开始即可
+    //第二步时排序
+    public static void sort(int[] nums){
+        buildHeap(nums);
+        for (int num : nums) {
+            System.out.print(num+" ");
+        }
+        System.out.println();
+        //思路是将大顶堆的最后堆顶元素和最后一个元素交换，完成以后，再将新的堆顶元素和倒数第二个元素做交换
+        //然后再进行堆化，直到堆中只剩下一个元素
+        for (int i = nums.length-1; i >=0; --i) {
+            swapSort(nums,0,i);
+            heapifySort(nums,0,i-1);
+        }
+    }
+
 
     public static void main(String[] args) {
-        heap heap = new heap(10);
-        heap.insert(1);
-        heap.insert(2);
-        heap.insert(3);
-        heap.insert(4);
-        heap.insert(5);
-        heap.list();
-        heap.delete();
-        heap.list();
-        heap.delete();
-        heap.list();
+//        heap heap = new heap(10);
+//        heap.insert(1);
+//        heap.insert(2);
+//        heap.insert(3);
+//        heap.insert(4);
+//        heap.insert(5);
+//        heap.list();
+//        heap.delete();
+//        heap.list();
+//        heap.delete();
+//        heap.list();
+
+        int[] nums={7,5,19,8,4,1,20,13,16};
+        sort(nums);
+        for (int num : nums) {
+            System.out.print(num+" ");
+        }
+        System.out.println();
     }
 
 }
