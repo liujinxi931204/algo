@@ -40,7 +40,6 @@ public class threeDegree {
 
         queue.add(s);
         isVisited[s]=true;
-        res.add(s);
         int degree=0;
         while (degree<3){
             int currentSize=queue.size();
@@ -62,6 +61,39 @@ public class threeDegree {
             result[i]=res.get(i);
         }
         return result;
+    }
+
+    //基于深度优先,主要利用递归的思想，递归到第三层就返回，找到所有三度以内的好友
+//    public int[] solution(int s){
+//
+//        if(v==0){
+//            return new int[0];
+//        }
+//
+//        //记录当前节点是否被访问过
+//        boolean[] isVisited=new boolean[v];
+//        ArrayList<Integer> res=new ArrayList<>();
+//        isVisited[s]=true;
+//        recurDFS(s,isVisited,res,0);
+//        int[] result=new int[res.size()];
+//        for (int i = 0; i <res.size() ; i++) {
+//            result[i]=res.get(i);
+//        }
+//        return result;
+//    }
+
+    public void recurDFS(int s,boolean[] isVisited,ArrayList<Integer> res,int level){
+        if(level==3){
+            return;
+        }
+        for (int i = 0; i <adj[s].size() ; i++) {
+            Integer w = adj[s].get(i);
+            if(!isVisited[w]){
+                isVisited[w]=true;
+                res.add(w);
+                recurDFS(w,isVisited,res,level+1);
+            }
+        }
     }
 
 
