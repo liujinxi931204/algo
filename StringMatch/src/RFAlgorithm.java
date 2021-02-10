@@ -1,5 +1,3 @@
-import java.util.HashMap;
-
 /**
  * RF算法，全称位Rabin-Karp算法，主要思想还是暴力匹配，不过该算法会将每一个主串中
  * 长度和模式串相等的子串计算一个hash值，再计算该hash值的时候和模式串的hash值进行比较
@@ -23,9 +21,9 @@ public class RFAlgorithm {
         //那么，"cba"=3*26*26+2*26+0*1=1353
         //并且前一个子串和后一个子串还有一定的关系
 
-        int[] table=new int[26];
+        int[] table=new int[m];
         int s=1;
-        for (int i = 0; i <26 ; i++) {
+        for (int i = 0; i <m ; i++) {
             table[i]=s;
             s*=26;
         }
