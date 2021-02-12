@@ -51,8 +51,8 @@ public class RFAlgorithm {
 
     public static void main(String[] args) {
         RFAlgorithm rfAlgorithm = new RFAlgorithm();
-        String des="abdefr";
-        String sou="efr";
+        String des="abcacabcbcbacabc";
+        String sou="cbacabc";
         int rf = rfAlgorithm.RF(des, sou);
         System.out.println(rf);
     }
